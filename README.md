@@ -1,7 +1,9 @@
 # Misfire Customs — website handoff
 
 Static website: 4 HTML pages, one CSS file, one JS file. No framework, no build step, no dependencies.
-It can go on any static host (Zone.ee, Veebimajutus.ee, Netlify, Cloudflare Pages, GitHub Pages) by uploading this folder as is.
+Hosted on Cloudflare Workers (static assets). Every push to `main` on GitHub deploys automatically.
+All website files live in `public/`; `wrangler.jsonc` tells Cloudflare to serve that folder.
+Page URLs have no `.html` ending (`/hinnakiri`, `/tehtud-tood`, `/kontakt`); Cloudflare maps them to the files.
 
 Language: Estonian (`lang="et"`). Designed mobile-first; most visitors will be on phones.
 
@@ -10,7 +12,9 @@ Language: Estonian (`lang="et"`). Designed mobile-first; most visitors will be o
 ## 1. Files
 
 ```
-misfire-customs-veebileht/
+misfire/
+├── wrangler.jsonc      Cloudflare config (serves public/)
+└── public/
 ├── index.html          Avaleht (hero with before/after slider, services, process, recent work)
 ├── hinnakiri.html      Hinnakiri (hourly price table)
 ├── tehtud-tood.html    Tehtud tööd (before/after gallery with category filter)
@@ -20,6 +24,7 @@ misfire-customs-veebileht/
 ├── assets/
 │   ├── favicon.svg     Placeholder "M" icon (replace with logo version)
 │   └── img/            Put all photos here
+├── 404.html          "Page not found" page
 ├── robots.txt
 └── sitemap.xml
 ```
@@ -27,7 +32,7 @@ misfire-customs-veebileht/
 The header and footer are repeated in all 4 HTML files. If you change the menu, change it in all four
 (or move them into includes if the host supports PHP / you use a static site generator).
 
-To preview locally: open `index.html` in a browser, or run `npx serve .` in this folder.
+To preview locally, run `npx wrangler dev` in the repository root (links use `/`-paths, so opening the files directly won't navigate correctly).
 
 ---
 

@@ -1,0 +1,9 @@
+{
+  // Misfire Customs website: static files served by Cloudflare Workers.
+  "name": "misfire",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}
