@@ -18,7 +18,7 @@ misfire/
 ├── index.html          Avaleht (hero with before/after slider, services, process, recent work)
 ├── hinnakiri.html      Hinnakiri (hourly price table)
 ├── tehtud-tood.html    Tehtud tööd (before/after gallery with category filter)
-├── kontakt.html        Kontakt (WhatsApp, phone, inquiry form, address)
+├── kontakt.html        Kontakt (Instagram, phone, inquiry form, address)
 ├── css/styles.css      All styles, commented and numbered by section
 ├── js/main.js          Menu, slider, gallery filter, form. CONFIG block at the top
 ├── assets/
@@ -48,10 +48,10 @@ The domain (`https://www.misfire.ee`) is already set in canonical links, Open Gr
 | 4 | Photos | See section 3. Every grey/orange striped box is a placeholder. |
 | 5 | Social share image | `assets/og-image.jpg`, 1200×630. Best before/after shot with the logo. |
 | 6 | Opening hours | Currently `E–R 10:00–18:00` (placeholder, confirm with owner). In footer of all pages, `kontakt.html`, and `openingHours` in the JSON-LD in `index.html`. |
-| 7 | Instagram | Currently `@misfirestudio`. Confirm whether the garage has its own account. `kontakt.html`. |
+| 7 | Instagram | Set to `@misfire.studio`. Message buttons open `https://ig.me/m/misfire.studio`; username is also in `CONFIG.instagram` in `js/main.js`. |
 | 8 | Contact form | Decide how it sends. See section 5. |
 
-Phone and WhatsApp (`+372 5698 4655`) and address (`Iva 12, Tallinn`) are already correct.
+Phone (`+372 5698 4655`), Instagram (`@misfire.studio`) and address (`Iva 12, Tallinn`) are already correct.
 
 ---
 
@@ -126,7 +126,7 @@ All values are CSS custom properties at the top of `css/styles.css`.
 
 ## 5. Contact form
 
-Right now the form validates, then shows a button that opens WhatsApp with the request pre-filled. It works with no server, but nothing is emailed.
+Right now the form validates, then shows the request text and a button that copies it and opens an Instagram message to @misfire.studio (Instagram can't pre-fill messages, so the customer pastes it). It works with no server, but nothing is emailed.
 
 To send it by email instead, set `formEndpoint` in the `CONFIG` block at the top of `js/main.js`. The form POSTs JSON: `{ name, phone, car, message }`. Options:
 
@@ -151,7 +151,7 @@ GDPR: the form collects a name and phone number. Add a one-line privacy note und
 ## 7. Content notes for the owner
 
 - The price list only covers mechanical work. Keretööd and toonimine have no prices, so their cards on the home page link to "Küsi hinda" (contact) instead of the price list. Add prices to `hinnakiri.html` if wanted.
-- Mobile action bar: phones show a fixed "Helista / WhatsApp" bar at the bottom of every page except Kontakt. To remove it, delete the `<div class="action-bar">` block and `class="has-action-bar"` on `<body>` in each page.
+- Mobile action bar: phones show a fixed "Helista / Instagram" bar at the bottom of every page except Kontakt. To remove it, delete the `<div class="action-bar">` block and `class="has-action-bar"` on `<body>` in each page.
 
 ---
 
@@ -167,7 +167,7 @@ After launch:
 ### Test checklist
 - [ ] iPhone Safari and Android Chrome: menu opens and closes, all links work, no sideways scrolling
 - [ ] Before/after slider drags on touch and with keyboard arrows
-- [ ] "Helista" opens the dialler, WhatsApp buttons open a chat with +372 5698 4655
-- [ ] Form: empty submit shows errors; filled submit sends (or opens WhatsApp)
+- [ ] "Helista" opens the dialler, Instagram buttons open a message to @misfire.studio
+- [ ] Form: empty submit shows errors; filled submit sends (or copies the text and opens Instagram)
 - [ ] Gallery filters show and hide the right items
 - [ ] Lighthouse: aim for 90+ on Performance, Accessibility, SEO (mobile)

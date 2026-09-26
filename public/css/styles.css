@@ -357,6 +357,12 @@ main{ display: block; }
   border: 1.5px solid var(--accent); display: grid; gap: .9rem;
 }
 .form-status.is-error{ border-color: var(--error); }
+.copy-box{
+  width: 100%; padding: .75rem .9rem; resize: none;
+  background: var(--surface); color: var(--muted);
+  border: 1.5px solid var(--line); border-radius: var(--radius);
+  font: inherit; font-size: .9rem; line-height: 1.5;
+}
 
 .info-list{ display: grid; gap: 1.4rem; margin: 0; }
 .info-list dt{ color: var(--muted); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: .2rem; }

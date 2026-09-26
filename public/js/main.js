@@ -5,11 +5,11 @@
 
 /* ---------- CONFIG: edit these ---------- */
 var CONFIG = {
-  // WhatsApp number in international format, digits only.
-  whatsapp: "37256984655",
+  // Instagram username. Buttons and the form open a direct message to it.
+  instagram: "misfire.studio",
 
   // Where the contact form posts. Leave empty ("") and the form
-  // hands the request over to WhatsApp instead of sending it.
+  // copies the request and opens an Instagram message instead.
   // Example: "https://formspree.io/f/xxxxxxx"
   formEndpoint: ""
 };
@@ -164,16 +164,27 @@ var CONFIG = {
         }).catch(function () {
           btn.disabled = false;
           btn.textContent = "Saada päring";
-          showStatus("<p><strong>Päringu saatmine ebaõnnestus.</strong></p><p>Proovi uuesti või kirjuta meile otse WhatsAppis.</p>", true);
+          showStatus("<p><strong>Päringu saatmine ebaõnnestus.</strong></p><p>Proovi uuesti või kirjuta meile otse Instagramis.</p>", true);
         });
         return;
       }
 
-      var url = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(buildMessage(data));
+      // Instagram can't pre-fill a message, so copy the request for the customer to paste.
+      var text = buildMessage(data);
+      var url = "https://ig.me/m/" + CONFIG.instagram;
       showStatus(
-        "<p><strong>Päring on valmis.</strong> Vajuta nuppu, et see meile WhatsAppis saata.</p>" +
-        '<a class="btn btn-accent" target="_blank" rel="noopener" href="' + url + '">Saada WhatsAppis</a>'
+        "<p><strong>Päring on valmis.</strong> Vajuta nuppu: päringu tekst kopeeritakse ja avaneb Instagrami vestlus meiega. Kleebi tekst sõnumisse ja saada.</p>" +
+        '<textarea class="copy-box" readonly rows="5" aria-label="Päringu tekst"></textarea>' +
+        '<a class="btn btn-accent" id="ig-send" target="_blank" rel="noopener" href="' + url + '">Kopeeri ja ava Instagram</a>'
       );
+      var box = status.querySelector(".copy-box");
+      box.value = text;
+      status.querySelector("#ig-send").addEventListener("click", function () {
+        function fallback() { box.focus(); box.select(); try { document.execCommand("copy"); } catch (err) {} }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).catch(fallback);
+        } else { fallback(); }
+      });
     });
   }
 
