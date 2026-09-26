@@ -47,7 +47,7 @@ The domain (`https://www.misfire.ee`) is already set in canonical links, Open Gr
 | 3 | Favicon | Replace `assets/favicon.svg` with an icon made from the logo. Also add `assets/apple-touch-icon.png` (180×180) and link it in `<head>`. |
 | 4 | Photos | See section 3. Every grey/orange striped box is a placeholder. |
 | 5 | Social share image | `assets/og-image.jpg`, 1200×630. Best before/after shot with the logo. |
-| 6 | Opening hours | Currently `E–R 10:00–18:00` (placeholder, confirm with owner). In footer of all pages, `kontakt.html`, and `openingHours` in the JSON-LD in `index.html`. |
+| 6 | Opening hours | Intentionally not shown on the site (by owner's choice). If added later: footer of all pages, `kontakt.html`, and `openingHours` in the JSON-LD in `index.html`. |
 | 7 | Instagram | Set to `@misfire.studio`. Message buttons open `https://ig.me/m/misfire.studio`; username is also in `CONFIG.instagram` in `js/main.js`. |
 | 8 | Contact form | Decide how it sends. See section 5. |
 
@@ -141,7 +141,7 @@ GDPR: the form collects a name and phone number. Add a one-line privacy note und
 
 ## 6. Map, fonts and privacy
 
-- **Map:** the site links to Google Maps instead of embedding it. An embedded Google map sets cookies, which in the EU means adding a cookie consent banner. If the owner wants the embed anyway:
+- **Map:** the site links to the garage's exact Google Maps pin (`https://maps.app.goo.gl/Wvti4uJibHdJ1XDt9`; Tallinn has two Iva streets, so don't replace it with an address search) instead of embedding it. An embedded Google map sets cookies, which in the EU means adding a cookie consent banner. If the owner wants the embed anyway:
   `<iframe src="https://www.google.com/maps?q=Iva+12,+Tallinn&output=embed" width="100%" height="320" style="border:0;border-radius:14px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Misfire Customs kaardil"></iframe>`
   together with a consent solution.
 - **Fonts:** loading from Google Fonts sends visitor IPs to Google. To avoid that, self-host Montserrat (download woff2 files via google-webfonts-helper, put them in `assets/fonts/`, replace the Google `<link>` tags with `@font-face` rules). The Estonian characters õ ä ö ü š ž are needed, so include the `latin` and `latin-ext` subsets.
