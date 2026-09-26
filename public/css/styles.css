@@ -20,6 +20,9 @@
   --on-accent: #0A0A0A;   /* text on orange buttons */
   --error:     #FF8A80;
 
+  /* film grain laid over the black background (tiny SVG noise tile, no image download) */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 2.2 0 0 0 -1.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E");
+
   /* type */
   --font: "Montserrat", "Helvetica Neue", Arial, sans-serif;
   --fs-h1: 2rem;
@@ -45,11 +48,11 @@
 html{
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: calc(var(--header-h) + 1rem);
-  background: var(--bg);
+  background: var(--bg) var(--grain) repeat;
 }
 body{
   margin: 0;
-  background: var(--bg);
+  background: var(--bg) var(--grain) repeat;
   color: var(--text);
   font-family: var(--font);
   font-size: var(--fs-body);
@@ -133,7 +136,7 @@ p{ margin: 0; }
 /* ---------- 5. Header + navigation ---------- */
 .site-header{
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
-  background: var(--bg);
+  background: var(--bg) var(--grain) repeat;
   border-bottom: 1px solid var(--line);
 }
 .header-row{
@@ -141,12 +144,11 @@ p{ margin: 0; }
   height: var(--header-h);
 }
 .brand{ display: inline-flex; align-items: center; text-decoration: none; min-height: 44px; }
-/* Replace .brand-word with <img src="assets/logo.svg" class="brand-logo" alt="Misfire Customs"> */
 .brand-word{
   font-size: 1.55rem; font-weight: 900; font-style: italic; letter-spacing: -.01em;
   text-transform: uppercase; line-height: 1;
 }
-.brand-logo{ height: 40px; width: auto; }
+.brand-logo{ height: 42px; width: auto; }
 
 .nav-desktop{ display: none; }
 .header-cta{ display: none; }
@@ -382,6 +384,7 @@ main{ display: block; }
 .footer-grid{ display: grid; gap: 2rem; }
 .footer-brand{ display: grid; gap: .4rem; align-content: start; }
 .footer-brand .name{ font-weight: 800; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .02em; }
+.footer-logo{ height: 64px; width: auto; margin-bottom: .35rem; }
 .footer-brand p, .footer-col p{ color: var(--muted); font-size: .92rem; }
 .footer-col{ display: grid; gap: .35rem; align-content: start; }
 .footer-col h2{ font-size: .75rem; letter-spacing: .08em; color: var(--muted); margin-bottom: .35rem; }
@@ -394,7 +397,7 @@ main{ display: block; }
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
   display: grid; grid-template-columns: 1fr 1fr; gap: .6rem;
   padding: .6rem var(--gutter) calc(.6rem + env(safe-area-inset-bottom, 0px));
-  background: rgba(10,10,10,.96); border-top: 1px solid var(--line);
+  background: var(--grain) repeat, rgba(10,10,10,.96); border-top: 1px solid var(--line);
 }
 .action-bar .btn{ min-height: 48px; font-size: .85rem; }
 body.has-action-bar,
@@ -420,6 +423,7 @@ body:has(> .action-bar){ padding-bottom: calc(72px + env(safe-area-inset-bottom,
   .nav-desktop a:hover{ color: var(--text); }
   .nav-desktop a[aria-current="page"]{ color: var(--accent); }
   .header-cta{ display: inline-flex; min-height: 46px; font-size: .85rem; margin-left: 1.5rem; }
+  .brand-logo{ height: 50px; }
 
   .btn-row{ display: flex; flex-wrap: wrap; }
   .btn-row .btn{ padding: 0 1.75rem; font-size: .95rem; }
