@@ -8,10 +8,9 @@ var CONFIG = {
   // Instagram username. Buttons and the form open a direct message to it.
   instagram: "misfire.studio",
 
-  // Where the contact form posts. Leave empty ("") and the form
-  // copies the request and opens an Instagram message instead.
-  // Example: "https://formspree.io/f/xxxxxxx"
-  formEndpoint: ""
+  // Where the contact form posts. The Worker in src/worker.js emails it to the garage.
+  // Leave empty ("") and the form copies the request and opens an Instagram message instead.
+  formEndpoint: "/api/paring"
 };
 
 (function () {
@@ -115,6 +114,7 @@ var CONFIG = {
 
     function buildMessage(data) {
       var lines = ["Tere! Päring kodulehelt:", "", "Nimi: " + data.name, "Telefon: " + data.phone];
+      if (data.email) lines.push("E-post: " + data.email);
       if (data.car) lines.push("Auto: " + data.car);
       lines.push("", data.message);
       return lines.join("\n");
@@ -145,8 +145,10 @@ var CONFIG = {
       var data = {
         name: form.elements.name.value.trim(),
         phone: form.elements.phone.value.trim(),
+        email: form.elements.email.value.trim(),
         car: form.elements.car.value.trim(),
-        message: form.elements.message.value.trim()
+        message: form.elements.message.value.trim(),
+        website: form.elements.website.value
       };
 
       if (CONFIG.formEndpoint) {
@@ -160,11 +162,15 @@ var CONFIG = {
         }).then(function (r) {
           if (!r.ok) throw new Error("HTTP " + r.status);
           form.hidden = true;
-          showStatus("<p><strong>Aitäh, päring on saadetud.</strong></p><p>Võtame sinuga ühendust telefoni teel.</p>");
+          showStatus("<p><strong>Aitäh, päring on saadetud.</strong></p><p>Võtame sinuga peagi ühendust.</p>");
         }).catch(function () {
           btn.disabled = false;
           btn.textContent = "Saada päring";
-          showStatus("<p><strong>Päringu saatmine ebaõnnestus.</strong></p><p>Proovi uuesti või kirjuta meile otse Instagramis.</p>", true);
+          showStatus(
+            "<p><strong>Päringu saatmine ebaõnnestus.</strong> Proovi uuesti, helista +372 5698 4655 või kirjuta meile Instagramis.</p>" +
+            '<a class="btn btn-outline" target="_blank" rel="noopener" href="https://ig.me/m/' + CONFIG.instagram + '">Kirjuta Instagramis</a>',
+            true
+          );
         });
         return;
       }

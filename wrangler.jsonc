@@ -1,9 +1,18 @@
 {
-  // Misfire Customs website: static files served by Cloudflare Workers.
+  // Misfire Customs website: static files in public/ plus a small Worker for the contact form.
   "name": "misfire",
+  "main": "src/worker.js",
   "compatibility_date": "2025-09-01",
   "assets": {
     "directory": "./public",
-    "not_found_handling": "404-page"
-  }
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // only /api/* runs the Worker; every other request is served straight from public/
+    "run_worker_first": ["/api/*"]
+  },
+  // Sends the contact form to the garage's inbox. Only verified Email Routing
+  // destination addresses can receive it (free). The address itself is the
+  // secret MAIL_TO, set in the Cloudflare dashboard, not in this public repo.
+  "send_email": [{ "name": "EMAIL" }],
+  "observability": { "enabled": true }
 }

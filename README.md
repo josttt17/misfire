@@ -13,7 +13,8 @@ Language: Estonian (`lang="et"`). Designed mobile-first; most visitors will be o
 
 ```
 misfire/
-├── wrangler.jsonc      Cloudflare config (serves public/)
+├── wrangler.jsonc      Cloudflare config (serves public/, email binding)
+├── src/worker.js       Contact form endpoint (/api/paring)
 └── public/
 ├── index.html          Avaleht (hero with before/after slider, services, process, recent work)
 ├── hinnakiri.html      Hinnakiri (hourly price table)
@@ -132,18 +133,23 @@ All values are CSS custom properties at the top of `css/styles.css`.
 
 ## 5. Contact form
 
-Right now the form validates, then shows the request text and a button that copies it and opens an Instagram message to @misfire.studio (Instagram can't pre-fill messages, so the customer pastes it). It works with no server, but nothing is emailed.
+The form posts JSON to `/api/paring`, handled by the Worker in `src/worker.js`. The Worker emails the
+request to the garage through Cloudflare Email Routing's `send_email` binding (`EMAIL` in `wrangler.jsonc`).
+Sending to a verified Email Routing destination address is free on the Workers Free plan.
 
-To send it by email instead, set `formEndpoint` in the `CONFIG` block at the top of `js/main.js`. The form POSTs JSON: `{ name, phone, car, message }`. Options:
-
-- **Formspree** or **Web3Forms**: free tier, create a form, paste its URL into `formEndpoint`. Nothing else to change.
-- **Own PHP script** on the host: accept the JSON POST, send the mail, return HTTP 200.
-
-The success and error messages are already written in Estonian in `main.js`.
+- **Recipient:** the secret `MAIL_TO` (Cloudflare dashboard → Workers & Pages → misfire → Settings →
+  Variables and Secrets). It must be a *verified* destination address under Email Routing. It is a
+  secret on purpose: this repository is public, so the address is not written in any file.
+- **Sender:** `veebileht@misfire.ee` (name "Misfire veebileht"). If the customer fills in their email,
+  it is set as Reply-To, so replying in Gmail answers the customer.
+- **Spam:** hidden honeypot field `website`; submissions that fill it are dropped silently.
+- **Fallback:** if sending fails, the page tells the customer to call or write on Instagram.
+  Setting `formEndpoint: ""` in `js/main.js` switches the form to the copy-and-open-Instagram flow.
+- **Local testing:** put `MAIL_TO="you@example.com"` in `.dev.vars` (git-ignored) and run
+  `npx wrangler dev`. Local sends are simulated and printed in the terminal, not delivered.
+- **Logs:** Cloudflare dashboard → misfire → Observability shows failed sends (`send failed <code>`).
 
 GDPR: the form collects a name and phone number. Add a one-line privacy note under the submit button (who receives it, what it is used for) and a short privacy page if the owner wants to be thorough.
-
----
 
 ## 6. Map, fonts and privacy
 

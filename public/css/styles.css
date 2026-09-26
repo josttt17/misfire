@@ -343,6 +343,7 @@ main{ display: block; }
 .field{ display: grid; gap: .4rem; }
 .field label{ font-size: .85rem; font-weight: 700; }
 .field .opt{ color: var(--muted); font-weight: 500; }
+.field.hp{ position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; } /* spam trap, hidden from people */
 .field input, .field textarea{
   width: 100%; min-height: 52px; padding: .85rem 1rem;
   background: var(--surface); color: var(--text);
