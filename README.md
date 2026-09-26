@@ -56,6 +56,12 @@ Phone (`+372 5698 4655`), Instagram (`@misfire.studio`) and address (`Iva 12, Ta
 
 ## 3. Photos
 
+**Photos are switched OFF right now** (there are no before/after pictures yet). Every photo element has
+`class="needs-photos"` and is hidden by the PHOTOS SWITCH block at the end of `public/css/styles.css`;
+`public/_redirects` sends `/tehtud-tood` to the home page. To switch back on: delete that CSS block,
+delete `public/_redirects`, and add `/tehtud-tood` back to `public/sitemap.xml`.
+
+
 All placeholders are `<div class="ph">…</div>`. Replace each one with an `<img>`. Commented example `<img>` tags are already in the hero.
 
 | Spot | File name (suggested) | Size | Notes |

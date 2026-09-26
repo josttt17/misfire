@@ -457,3 +457,20 @@ body:has(> .action-bar){ padding-bottom: calc(72px + env(safe-area-inset-bottom,
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{ transition: none !important; animation: none !important; }
 }
+
+/* =========================================================
+   PHOTOS SWITCH — currently OFF (no before/after photos yet)
+   Everything marked class="needs-photos" is hidden: hero slider,
+   "Varasemad tööd" button, "Viimased tööd" section and the
+   "Tehtud tööd" menu links. public/_redirects sends /tehtud-tood home.
+   To turn photos back ON:
+     1. delete this whole block,
+     2. delete public/_redirects,
+     3. add /tehtud-tood back to public/sitemap.xml.
+   ========================================================= */
+.needs-photos{ display: none !important; }
+.hero-grid{ grid-template-columns: 1fr !important; }
+.hero .btn-row{ grid-template-columns: 1fr; }
+@media (min-width: 1024px){
+  .hero h1{ max-width: 18ch; }
+}
