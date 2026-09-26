@@ -136,7 +136,7 @@ p{ margin: 0; }
 /* ---------- 5. Header + navigation ---------- */
 .site-header{
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
-  background: var(--bg) var(--grain) repeat;
+  background: var(--bg); /* solid: no grain on header or menu */
   border-bottom: 1px solid var(--line);
 }
 .header-row{
@@ -380,7 +380,7 @@ main{ display: block; }
 .map-card:hover{ border-color: var(--outline); }
 
 /* ---------- 16. Footer ---------- */
-.site-footer{ border-top: 1px solid var(--line); padding-block: 2.75rem 2rem; }
+.site-footer{ border-top: 1px solid var(--line); padding-block: 2.75rem 2rem; background: var(--bg); /* solid: no grain */ }
 .footer-grid{ display: grid; gap: 2rem; }
 .footer-brand{ display: grid; gap: .4rem; align-content: start; }
 .footer-brand .name{ font-weight: 800; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .02em; }

@@ -22,7 +22,6 @@ misfire/
 ├── css/styles.css      All styles, commented and numbered by section
 ├── js/main.js          Menu, slider, gallery filter, form. CONFIG block at the top
 ├── assets/
-│   ├── favicon.svg     Placeholder "M" icon (replace with logo version)
 │   └── img/            Put all photos here
 ├── 404.html          "Page not found" page
 ├── robots.txt
@@ -44,7 +43,7 @@ The domain (`https://www.misfire.ee`) is already set in canonical links, Open Gr
 |---|------|-------|
 | 1 | Hosting | Cloudflare Pages (free). Point `misfire.ee` and `www.misfire.ee` at the Pages project; redirect `misfire.ee` to `www.misfire.ee` so the canonical address matches. |
 | 2 | Logo | Done: `public/assets/logo.webp` (white spray tag, transparent, 600×318) in header and footer. |
-| 3 | Favicon | Replace `assets/favicon.svg` with an icon made from the logo. Also add `assets/apple-touch-icon.png` (180×180) and link it in `<head>`. |
+| 3 | Favicon | Done: `favicon.ico` (16/32/48), `favicon-32.png`, `apple-touch-icon.png` (180), `assets/icons/icon-192/512.png` + `site.webmanifest`, all from the MISFIRE tag on black. |
 | 4 | Photos | See section 3. Every grey/orange striped box is a placeholder. |
 | 5 | Social share image | Done: `public/assets/og-image.jpg` (logo on black, 1200×630). Swap for a before/after shot with the logo later if wanted. |
 | 6 | Opening hours | Intentionally not shown on the site (by owner's choice). If added later: footer of all pages, `kontakt.html`, and `openingHours` in the JSON-LD in `index.html`. |
@@ -109,7 +108,7 @@ All values are CSS custom properties at the top of `css/styles.css`.
 | Token | Value | Use |
 |-------|-------|-----|
 | `--bg` | `#0A0A0A` | Page background |
-| `--grain` | inline SVG noise | Film grain over the background (header, body, phone action bar). Strength = the `opacity` value inside the SVG. |
+| `--grain` | inline SVG noise | Film grain over the page background and phone action bar. Header, menu and footer stay solid black. Strength = the `opacity` value inside the SVG. |
 | `--surface` | `#141414` | Form fields |
 | `--line` | `#333333` | Dividers |
 | `--outline` | `#CFCFCF` | Card and outline-button borders |
