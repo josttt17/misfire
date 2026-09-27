@@ -153,7 +153,7 @@ GDPR: the form collects a name and phone number. Add a one-line privacy note und
 
 ## 6. Map, fonts and privacy
 
-- **Map:** the site links to the garage's exact Google Maps pin (`https://maps.app.goo.gl/Wvti4uJibHdJ1XDt9`; Tallinn has two Iva streets, so don't replace it with an address search) instead of embedding it. An embedded Google map sets cookies, which in the EU means adding a cookie consent banner. If the owner wants the embed anyway:
+- **Map:** the site links to the garage's Google Business Profile listing (`https://maps.app.goo.gl/CkrSw9BeQMksWmGz7`; Tallinn has two Iva streets, so don't replace it with an address search) instead of embedding it. An embedded Google map sets cookies, which in the EU means adding a cookie consent banner. If the owner wants the embed anyway:
   `<iframe src="https://www.google.com/maps?q=Iva+12,+Tallinn&output=embed" width="100%" height="320" style="border:0;border-radius:14px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Misfire Customs kaardil"></iframe>`
   together with a consent solution.
 - **Fonts:** loading from Google Fonts sends visitor IPs to Google. To avoid that, self-host Montserrat (download woff2 files via google-webfonts-helper, put them in `assets/fonts/`, replace the Google `<link>` tags with `@font-face` rules). The Estonian characters õ ä ö ü š ž are needed, so include the `latin` and `latin-ext` subsets.
