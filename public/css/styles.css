@@ -256,6 +256,17 @@ main{ display: block; }
   color: #C9A57C;
 }
 
+/* ---------- 8b. Seasonal promo band ---------- */
+.promo-section{ padding-top: 0; }
+.promo{
+  display: grid; gap: 1.1rem; padding: 1.4rem 1.3rem;
+  border: 1.5px solid var(--accent); border-radius: var(--radius-lg);
+  background: rgba(247,147,30,.06);
+}
+.promo h2{ color: var(--accent); margin-bottom: .35rem; }
+.promo p{ color: var(--text); max-width: 55ch; }
+.promo .btn{ justify-self: start; }
+
 /* ---------- 9. Service cards ---------- */
 .service-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
 .service-card{
@@ -324,6 +335,7 @@ main{ display: block; }
 }
 .price-table tbody th{ font-weight: 700; padding-right: 1rem; }
 .price-table td{ text-align: right; white-space: nowrap; color: var(--accent); font-weight: 800; font-size: 1.1rem; }
+.price-table td small.from{ margin: 0 .25rem 0 0; }
 .price-table td small{ color: var(--muted); font-size: .8rem; font-weight: 600; margin-left: 1px; }
 .price-table tbody tr:last-child th, .price-table tbody tr:last-child td{ border-bottom: 0; }
 .price-heading{ font-size: 1.15rem; margin: 2rem 0 .75rem; color: var(--accent); }
@@ -445,6 +457,8 @@ body:has(> .action-bar){ padding-bottom: calc(72px + env(safe-area-inset-bottom,
   .work-grid{ grid-template-columns: repeat(4, 1fr); gap: 1rem; }
   .gallery{ grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
   .cta-band{ grid-template-columns: 1fr auto; align-items: center; padding: 2.25rem 2.5rem; }
+  .promo{ grid-template-columns: 1fr auto; align-items: center; padding: 1.6rem 2rem; }
+  .promo .btn{ justify-self: end; }
   .cta-band .btn{ justify-self: end; }
   .quick-actions{ grid-template-columns: 1fr 1fr; }
   .footer-grid{ grid-template-columns: 1.4fr 1fr 1fr; }
