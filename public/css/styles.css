@@ -384,8 +384,7 @@ main{ display: block; }
 .site-footer{ border-top: 1px solid var(--line); padding-block: 2.75rem 2rem; background: var(--bg); /* solid: no grain */ }
 .footer-grid{ display: grid; gap: 2rem; }
 .footer-brand{ display: grid; gap: .4rem; align-content: start; }
-.footer-brand .name{ font-weight: 800; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .02em; }
-.footer-logo{ height: 64px; width: auto; margin-bottom: .35rem; }
+.footer-brand .name{ color: var(--text); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .02em; }
 .footer-brand p, .footer-col p{ color: var(--muted); font-size: .92rem; }
 .footer-col{ display: grid; gap: .35rem; align-content: start; }
 .footer-col h2{ font-size: .75rem; letter-spacing: .08em; color: var(--muted); margin-bottom: .35rem; }
