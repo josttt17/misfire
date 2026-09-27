@@ -3,6 +3,10 @@
   "name": "misfire",
   "main": "src/worker.js",
   "compatibility_date": "2025-09-01",
+  // The site lives only on misfire.ee / www.misfire.ee. Keep the public
+  // *.workers.dev copy and preview links off so deploys don't re-enable them.
+  "workers_dev": false,
+  "preview_urls": false,
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",

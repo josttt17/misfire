@@ -1,0 +1,32 @@
+# Response headers for every static file (Cloudflare Workers static assets).
+# The contact form (/api/*) is answered by src/worker.js and is not affected.
+
+/*
+  Strict-Transport-Security: max-age=15552000
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# Images and icons rarely change: browsers keep them for 30 days.
+# When replacing an image, give the new file a new name.
+/assets/*
+  Cache-Control: public, max-age=2592000
+
+/favicon.ico
+  Cache-Control: public, max-age=2592000
+
+/favicon-32.png
+  Cache-Control: public, max-age=2592000
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000
+
+# CSS and JS: kept for 1 day. The pages load them as styles.css?v=N and
+# main.js?v=N, so after editing either file raise N in all 5 HTML files and
+# every visitor gets the new version right away.
+/css/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/js/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
