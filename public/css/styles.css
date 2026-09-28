@@ -391,6 +391,8 @@ main{ display: block; }
   text-decoration: none; font-weight: 700; font-size: .95rem;
 }
 .map-card span{ color: var(--accent); font-size: .85rem; }
+.review-card{ display: grid; gap: .75rem; margin-top: 1.25rem; }
+.review-card p{ color: var(--muted); font-size: .9rem; }
 .map-card:hover{ border-color: var(--outline); }
 
 /* ---------- 16. Footer ---------- */
