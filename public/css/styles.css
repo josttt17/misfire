@@ -385,7 +385,7 @@ main{ display: block; }
 .info-list dd{ margin: 0; font-weight: 700; font-size: 1.05rem; }
 .info-list dd a{ text-decoration: none; }
 .info-list dd a:hover{ color: var(--accent); }
-.map-embed{ border: 1.5px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4 / 3; max-width: 100%; margin-bottom: .75rem; background: var(--surface); }
+.map-embed{ border: 1.5px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4 / 3; max-width: 100%; margin-top: .9rem; background: var(--surface); }
 .map-embed iframe{ display: block; width: 100%; height: 100%; border: 0; }
 .map-card{
   display: grid; gap: .3rem; padding: 1.1rem 1.2rem; margin-top: .6rem;
