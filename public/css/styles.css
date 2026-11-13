@@ -493,17 +493,30 @@ body:has(> .action-bar){ padding-bottom: calc(72px + env(safe-area-inset-bottom,
   .hero h1{ max-width: 18ch; }
 }
 
-/* Tyre price matrix: scrolls sideways on phones, label column stays put */
+/* Tyre price matrix. Desktop: full grid. Phone: pick one rim size, see one price column. */
 .tyre-lede{ margin: 0 0 1rem; }
 .table-scroll{ overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: .5rem; }
-.tyre-table{ min-width: 640px; }
 .tyre-table thead th{ text-align: right; white-space: nowrap; padding-left: .75rem; }
 .tyre-table thead th:first-child{ text-align: left; padding-left: 0; }
+.tyre-table th, .tyre-table td{ padding-top: .7rem; padding-bottom: .7rem; }
 .tyre-table td{ padding-left: .75rem; }
 .tyre-table td.na{ color: var(--muted); font-weight: 500; }
-.tyre-table tbody th{ min-width: 9.5rem; }
-.scroll-hint{ display: none; color: var(--muted); font-size: .8rem; margin: 0 0 .5rem; }
+.size-picker{ display: none; gap: .4rem; margin-bottom: .75rem; }
+.size-picker .chip{ min-height: 40px; padding: 0 .85rem; }
 @media (max-width: 680px){
-  .scroll-hint{ display: block; }
-  .tyre-table tbody th, .tyre-table thead th:first-child{ position: sticky; left: 0; background: var(--bg); z-index: 1; }
+  .tyre-js .size-picker{ display: flex; }
+  .tyre-js .tyre-table{ min-width: 0; }
+  .tyre-js .tyre-table td, .tyre-js .tyre-table thead th:not(:first-child){ display: none; }
+  .tyre-js .tyre-table[data-col="1"] td:nth-of-type(1), .tyre-js .tyre-table[data-col="1"] thead th:nth-child(2),
+  .tyre-js .tyre-table[data-col="2"] td:nth-of-type(2), .tyre-js .tyre-table[data-col="2"] thead th:nth-child(3),
+  .tyre-js .tyre-table[data-col="3"] td:nth-of-type(3), .tyre-js .tyre-table[data-col="3"] thead th:nth-child(4),
+  .tyre-js .tyre-table[data-col="4"] td:nth-of-type(4), .tyre-js .tyre-table[data-col="4"] thead th:nth-child(5),
+  .tyre-js .tyre-table[data-col="5"] td:nth-of-type(5), .tyre-js .tyre-table[data-col="5"] thead th:nth-child(6),
+  .tyre-js .tyre-table[data-col="6"] td:nth-of-type(6), .tyre-js .tyre-table[data-col="6"] thead th:nth-child(7){ display: table-cell; }
+  .tyre-js .tyre-table thead{ display: none; }
+  .tyre-js .tyre-table td.na::after{ content: " ei tee"; font-size: .8rem; }
+  .tyre-js .tyre-table td:not(.na)::after{ content: " €"; }
+}
+@media (max-width: 680px){
+  html:not(.tyre-js) .tyre-table{ min-width: 640px; }
 }

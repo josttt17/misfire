@@ -198,4 +198,20 @@ var CONFIG = {
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+  /* ---------- Tyre price table: rim size picker (phones) ---------- */
+  var tyreTable = document.querySelector(".tyre-table");
+  var picker = document.querySelector(".size-picker");
+  if (tyreTable && picker) {
+    document.documentElement.classList.add("tyre-js");
+    picker.hidden = false;
+    tyreTable.setAttribute("data-col", "1");
+    picker.addEventListener("click", function (e) {
+      var btn = e.target.closest("[data-col]");
+      if (!btn) return;
+      tyreTable.setAttribute("data-col", btn.getAttribute("data-col"));
+      picker.querySelectorAll("[data-col]").forEach(function (b) {
+        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+      });
+    });
+  }
 })();
