@@ -514,7 +514,7 @@ body:has(> .action-bar){ padding-bottom: calc(72px + env(safe-area-inset-bottom,
   .tyre-js .tyre-table[data-col="5"] td:nth-of-type(5), .tyre-js .tyre-table[data-col="5"] thead th:nth-child(6),
   .tyre-js .tyre-table[data-col="6"] td:nth-of-type(6), .tyre-js .tyre-table[data-col="6"] thead th:nth-child(7){ display: table-cell; }
   .tyre-js .tyre-table thead{ display: none; }
-  .tyre-js .tyre-table td.na::after{ content: " ei tee"; font-size: .8rem; }
+  .tyre-js .tyre-table tr.size-na{ display: none; }
   .tyre-js .tyre-table td:not(.na)::after{ content: " €"; }
 }
 @media (max-width: 680px){

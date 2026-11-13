@@ -204,11 +204,19 @@ var CONFIG = {
   if (tyreTable && picker) {
     document.documentElement.classList.add("tyre-js");
     picker.hidden = false;
-    tyreTable.setAttribute("data-col", "1");
+    var showCol = function (col) {
+      tyreTable.setAttribute("data-col", col);
+      // hide jobs we don't do for this size (e.g. steel rims 19" and up)
+      tyreTable.querySelectorAll("tbody tr").forEach(function (tr) {
+        var cell = tr.querySelectorAll("td")[col - 1];
+        tr.classList.toggle("size-na", !!cell && cell.classList.contains("na"));
+      });
+    };
+    showCol(1);
     picker.addEventListener("click", function (e) {
       var btn = e.target.closest("[data-col]");
       if (!btn) return;
-      tyreTable.setAttribute("data-col", btn.getAttribute("data-col"));
+      showCol(+btn.getAttribute("data-col"));
       picker.querySelectorAll("[data-col]").forEach(function (b) {
         b.setAttribute("aria-pressed", b === btn ? "true" : "false");
       });
