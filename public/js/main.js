@@ -207,10 +207,15 @@ var CONFIG = {
     var showCol = function (col) {
       tyreTable.setAttribute("data-col", col);
       // hide jobs we don't do for this size (e.g. steel rims 19" and up)
-      tyreTable.querySelectorAll("tbody tr").forEach(function (tr) {
+      var shown = 0;
+      tyreTable.querySelectorAll("tbody tr:not(.none-row)").forEach(function (tr) {
         var cell = tr.querySelectorAll("td")[col - 1];
-        tr.classList.toggle("size-na", !!cell && cell.classList.contains("na"));
+        var na = !!cell && cell.classList.contains("na");
+        tr.classList.toggle("size-na", na);
+        if (!na) shown++;
       });
+      var none = tyreTable.querySelector(".none-row");
+      if (none) none.hidden = shown > 0;
     };
     showCol(1);
     picker.addEventListener("click", function (e) {
