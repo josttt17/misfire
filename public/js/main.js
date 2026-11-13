@@ -216,6 +216,8 @@ var CONFIG = {
       });
       var none = tyreTable.querySelector(".none-row");
       if (none) none.hidden = shown > 0;
+      var extras = document.querySelector(".tyre-extras");
+      if (extras) extras.hidden = shown === 0;
     };
     showCol(1);
     picker.addEventListener("click", function (e) {
