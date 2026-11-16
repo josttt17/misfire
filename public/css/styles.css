@@ -522,3 +522,14 @@ body:has(> .action-bar){ padding-bottom: calc(72px + env(safe-area-inset-bottom,
 @media (max-width: 680px){
   html:not(.tyre-js) .tyre-table{ min-width: 640px; }
 }
+
+/* Legal pages and footer legal line */
+.legal h2{ font-size: 1.05rem; margin: 2rem 0 .5rem; color: var(--accent); }
+.legal p{ color: var(--muted); line-height: 1.65; margin: 0 0 .75rem; max-width: 70ch; }
+.legal .page-head .lede{ color: var(--text); }
+.legal-updated{ margin-top: 2rem !important; font-size: .8rem; }
+.footer-legal{ display: grid; gap: .35rem; }
+.footer-legal p{ margin: 0; }
+.footer-legal a{ color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.footer-legal a:hover{ color: var(--accent); }
+.legal p .text-link{ font-size: inherit; line-height: inherit; min-height: 0; padding: 0; display: inline; }
