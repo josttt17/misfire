@@ -551,3 +551,10 @@ body:has(> .action-bar){ padding-bottom: calc(72px + env(safe-area-inset-bottom,
   .hero-promo{ max-width: 34rem; padding: 1.1rem 1.4rem; }
   .hero-promo-text{ font-size: 1.2rem; }
 }
+
+/* Links inside running text: plain inline, no tap-target box stretching the line */
+p .text-link, li .text-link, dd .text-link{
+  display: inline; min-height: 0; padding: 0;
+  font-size: inherit; line-height: inherit;
+  text-underline-offset: 3px; text-decoration-thickness: 1px;
+}
