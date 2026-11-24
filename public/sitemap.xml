@@ -2,8 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.misfire.ee/</loc></url>
   <url><loc>https://www.misfire.ee/rehvivahetus</loc></url>
+  <url><loc>https://www.misfire.ee/olivahetus</loc></url>
   <url><loc>https://www.misfire.ee/hinnakiri</loc></url>
   <url><loc>https://www.misfire.ee/kontakt</loc></url>
   <url><loc>https://www.misfire.ee/tingimused</loc></url>
   <url><loc>https://www.misfire.ee/privaatsus</loc></url>
+  <url><loc>https://www.misfire.ee/en/</loc></url>
+  <url><loc>https://www.misfire.ee/en/prices</loc></url>
+  <url><loc>https://www.misfire.ee/en/tyre-change</loc></url>
+  <url><loc>https://www.misfire.ee/en/oil-change</loc></url>
+  <url><loc>https://www.misfire.ee/en/contact</loc></url>
 </urlset>

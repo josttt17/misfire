@@ -42,7 +42,9 @@ async function handleInquiry(request, env) {
   }
   const replyTo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? email : undefined;
 
+  const lang = clean(data.lang, 5) === "en" ? "inglise (vasta inglise keeles)" : "";
   const rows = [["Nimi", name], ["Telefon", phone], ["E-post", email || "—"], ["Auto", car || "—"]];
+  if (lang) rows.push(["Keel", lang]);
   const text =
     "Uus päring kodulehelt www.misfire.ee\n\n" +
     rows.map(([k, v]) => `${k}: ${v}`).join("\n") +

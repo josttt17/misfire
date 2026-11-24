@@ -16,6 +16,33 @@ var CONFIG = {
 (function () {
   "use strict";
 
+  var EN = document.documentElement.lang === "en";
+  var T = EN ? {
+    menuOpen: "Open menu", menuClose: "Close menu",
+    errName: "Please enter your name.",
+    errPhone: "Please enter a phone number so we can get back to you.",
+    errMsg: "Please describe briefly what the car needs.",
+    hello: "Hi! Request from the website:", lName: "Name: ", lPhone: "Phone: ", lEmail: "Email: ", lCar: "Car: ",
+    sending: "Sending…", send: "Send request",
+    ok: "<p><strong>Thank you, your request has been sent.</strong></p><p>We will get back to you soon.</p>",
+    fail: "<p><strong>Sending failed.</strong> Please try again, text +372 5698 4655 or message us on Instagram.</p>",
+    igBtn: "Message on Instagram",
+    ready: "<p><strong>Your request is ready.</strong> Press the button: the text is copied and an Instagram chat with us opens. Paste the text into the message and send it.</p>",
+    copyLabel: "Request text", copyBtn: "Copy and open Instagram"
+  } : {
+    menuOpen: "Ava menüü", menuClose: "Sulge menüü",
+    errName: "Sisesta oma nimi.",
+    errPhone: "Sisesta telefoninumber, et saaksime sinuga ühendust võtta.",
+    errMsg: "Kirjelda lühidalt, mida autoga vaja teha on.",
+    hello: "Tere! Päring kodulehelt:", lName: "Nimi: ", lPhone: "Telefon: ", lEmail: "E-post: ", lCar: "Auto: ",
+    sending: "Saadan…", send: "Saada päring",
+    ok: "<p><strong>Aitäh, päring on saadetud.</strong></p><p>Võtame sinuga peagi ühendust.</p>",
+    fail: "<p><strong>Päringu saatmine ebaõnnestus.</strong> Proovi uuesti, kirjuta +372 5698 4655 või kirjuta meile Instagramis.</p>",
+    igBtn: "Kirjuta Instagramis",
+    ready: "<p><strong>Päring on valmis.</strong> Vajuta nuppu: päringu tekst kopeeritakse ja avaneb Instagrami vestlus meiega. Kleebi tekst sõnumisse ja saada.</p>",
+    copyLabel: "Päringu tekst", copyBtn: "Kopeeri ja ava Instagram"
+  };
+
   /* ---------- Mobile menu ---------- */
   var burger = document.querySelector(".burger");
   var menu = document.getElementById("mobile-menu");
@@ -23,7 +50,7 @@ var CONFIG = {
   function setMenu(open) {
     if (!burger || !menu) return;
     burger.setAttribute("aria-expanded", open ? "true" : "false");
-    burger.setAttribute("aria-label", open ? "Sulge menüü" : "Ava menüü");
+    burger.setAttribute("aria-label", open ? T.menuClose : T.menuOpen);
     menu.classList.toggle("is-open", open);
     menu.inert = !open;
   }
@@ -83,9 +110,9 @@ var CONFIG = {
   if (form) {
     var status = document.getElementById("form-status");
     var messages = {
-      name: "Sisesta oma nimi.",
-      phone: "Sisesta telefoninumber, et saaksime sulle tagasi helistada.",
-      message: "Kirjelda lühidalt, mida autoga vaja teha on."
+      name: T.errName,
+      phone: T.errPhone,
+      message: T.errMsg
     };
 
     function fieldOf(input) { return input.closest(".field"); }
@@ -113,9 +140,9 @@ var CONFIG = {
     });
 
     function buildMessage(data) {
-      var lines = ["Tere! Päring kodulehelt:", "", "Nimi: " + data.name, "Telefon: " + data.phone];
-      if (data.email) lines.push("E-post: " + data.email);
-      if (data.car) lines.push("Auto: " + data.car);
+      var lines = [T.hello, "", T.lName + data.name, T.lPhone + data.phone];
+      if (data.email) lines.push(T.lEmail + data.email);
+      if (data.car) lines.push(T.lCar + data.car);
       lines.push("", data.message);
       return lines.join("\n");
     }
@@ -148,13 +175,14 @@ var CONFIG = {
         email: form.elements.email.value.trim(),
         car: form.elements.car.value.trim(),
         message: form.elements.message.value.trim(),
-        website: form.elements.website.value
+        website: form.elements.website.value,
+        lang: EN ? "en" : "et"
       };
 
       if (CONFIG.formEndpoint) {
         var btn = form.querySelector("button[type=submit]");
         btn.disabled = true;
-        btn.textContent = "Saadan…";
+        btn.textContent = T.sending;
         fetch(CONFIG.formEndpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
@@ -162,13 +190,13 @@ var CONFIG = {
         }).then(function (r) {
           if (!r.ok) throw new Error("HTTP " + r.status);
           form.hidden = true;
-          showStatus("<p><strong>Aitäh, päring on saadetud.</strong></p><p>Võtame sinuga peagi ühendust.</p>");
+          showStatus(T.ok);
         }).catch(function () {
           btn.disabled = false;
-          btn.textContent = "Saada päring";
+          btn.textContent = T.send;
           showStatus(
-            "<p><strong>Päringu saatmine ebaõnnestus.</strong> Proovi uuesti, helista +372 5698 4655 või kirjuta meile Instagramis.</p>" +
-            '<a class="btn btn-outline" target="_blank" rel="noopener" href="https://ig.me/m/' + CONFIG.instagram + '">Kirjuta Instagramis</a>',
+            T.fail +
+            '<a class="btn btn-outline" target="_blank" rel="noopener" href="https://ig.me/m/' + CONFIG.instagram + '">' + T.igBtn + '</a>',
             true
           );
         });
@@ -179,9 +207,9 @@ var CONFIG = {
       var text = buildMessage(data);
       var url = "https://ig.me/m/" + CONFIG.instagram;
       showStatus(
-        "<p><strong>Päring on valmis.</strong> Vajuta nuppu: päringu tekst kopeeritakse ja avaneb Instagrami vestlus meiega. Kleebi tekst sõnumisse ja saada.</p>" +
-        '<textarea class="copy-box" readonly rows="5" aria-label="Päringu tekst"></textarea>' +
-        '<a class="btn btn-accent" id="ig-send" target="_blank" rel="noopener" href="' + url + '">Kopeeri ja ava Instagram</a>'
+        T.ready +
+        '<textarea class="copy-box" readonly rows="5" aria-label="' + T.copyLabel + '"></textarea>' +
+        '<a class="btn btn-accent" id="ig-send" target="_blank" rel="noopener" href="' + url + '">' + T.copyBtn + '</a>'
       );
       var box = status.querySelector(".copy-box");
       box.value = text;

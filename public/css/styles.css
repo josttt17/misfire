@@ -561,3 +561,22 @@ p .text-link, li .text-link, dd .text-link{
 
 .nowrap{ white-space: nowrap; }
 .btn-stack{ flex-direction: column; justify-content: center; gap: .1rem; line-height: 1.15; padding-top: .55rem; padding-bottom: .55rem; }
+
+/* Language switch: small flag next to the menu */
+.lang-switch{
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; margin-left: auto; border-radius: 8px;
+  opacity: .9; transition: opacity .15s;
+}
+.lang-switch:hover{ opacity: 1; }
+.lang-switch .flag{ display: block; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.25); }
+@media (min-width: 700px){ .lang-switch{ margin-left: .75rem; } }
+.brand{ flex-shrink: 0; }
+.header-cta{ white-space: nowrap; }
+@media (min-width: 700px) and (max-width: 1023px){
+  .nav-desktop{ gap: 1.1rem; }
+  .nav-desktop a{ font-size: .78rem; }
+  .header-cta{ display: none; }
+}
+.row-link{ color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.row-link:hover{ color: var(--accent); }
