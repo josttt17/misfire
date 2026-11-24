@@ -72,6 +72,12 @@ async function handleInquiry(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // One address for Google: misfire.ee/... -> https://www.misfire.ee/...
+    if (url.hostname === "misfire.ee") {
+      url.hostname = "www.misfire.ee";
+      url.protocol = "https:";
+      return Response.redirect(url.toString(), 301);
+    }
     if (url.pathname === "/api/paring") return handleInquiry(request, env);
     return env.ASSETS.fetch(request);
   },
