@@ -576,7 +576,7 @@ p .text-link, li .text-link, dd .text-link{
 @media (min-width: 700px) and (max-width: 1023px){
   .nav-desktop{ gap: 1.1rem; }
   .nav-desktop a{ font-size: .78rem; }
-  .header-cta{ display: none; }
+  .header-cta{ margin-left: 1rem; padding: 0 1rem; }
 }
 .row-link{ color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
 .row-link:hover{ color: var(--accent); }
